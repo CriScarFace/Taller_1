@@ -1,3 +1,0 @@
-INDEX VERSION 1.131+D:\Mis Cosas\Universidad\8vo Semestre\Programación Avanzada\Talleres\GitHub\Taller1\Taller1 WorkSpace\.metadata\.plugins\org.eclipse.jdt.core
-3961298938.index
-1549854921.index
