@@ -1,3 +1,4 @@
+package logica;
 
 public abstract class Taller1 {
 
@@ -7,7 +8,7 @@ public abstract class Taller1 {
 		System.out.println("Chupalo Brayan");
 
 		System.out.println("chupalo Cristian");
-		System.out.println("esperanza");
+		System.out.println("esperanza1");
 
 
 	}
