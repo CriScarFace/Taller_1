@@ -9,7 +9,7 @@ public class Cuenta {
 		private int RP;
 		private String region;
 		private int cantPersonajes;
-		ListaPersonajes listaPersonajes;
+		private ListaPersonajes listaPersonajes;
 		
 
 		public Cuenta(String nomCuenta,String contrasena,String nickName,String nivel,int RP,String region,int cantPersonajes) 
@@ -21,6 +21,7 @@ public class Cuenta {
 			this.RP = RP;
 			this.region = region;
 			this.cantPersonajes = cantPersonajes;
+			listaPersonajes = new ListaPersonajes(155); 
 		}
 
 		
