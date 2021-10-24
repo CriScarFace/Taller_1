@@ -41,7 +41,12 @@ public class ListaCuentas {
 	}
 	public Cuenta getCuentaI(int i)
 	{
-		return lista[i];
+		if(i<=contador) {
+			return lista[i];
+		}else 
+		{
+			return null;
+		}
 	}
 	public Cuenta getCuentaNombre(String nomCuenta) 
 	{
