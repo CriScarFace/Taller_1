@@ -6,6 +6,7 @@ public class Personaje {
 	private String rol;
 	private Cuenta cuenta;
 	private ListaSkins listaSkins;
+	private int recaudacionCLP;
 	
 	public Personaje(String nomPersonaje,String rol) 
 	{
@@ -15,7 +16,7 @@ public class Personaje {
 	}
 	public boolean agregarSkin(Skin skin) 
 	{
-		boolean b = listaSkins.agregarSkin(skin);
+		boolean b = listaSkins.ingresarSkin(skin);
 		return b;
 	}
 
@@ -49,6 +50,12 @@ public class Personaje {
 
 	public void setListaSkins(ListaSkins listaSkins) {
 		this.listaSkins = listaSkins;
+	}
+	public int getRecaudacionCLP() {
+		return recaudacionCLP;
+	}
+	public void setRecaudacionCLP(int recaudacionCLP) {
+		this.recaudacionCLP = recaudacionCLP;
 	}
 	
 
