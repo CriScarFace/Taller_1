@@ -27,7 +27,7 @@ public class Cuenta {
 		
 		public boolean agregarPersonaje(Personaje p) 
 		{
-			boolean bool = listaPersonajes.agregarPersonajes(p);
+			boolean bool = listaPersonajes.agregarPersonaje(p);
 			return bool;
 		}
 		public String getNomCuenta() {
