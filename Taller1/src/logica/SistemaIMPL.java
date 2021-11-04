@@ -1,18 +1,22 @@
 package logica;
 
 public class SistemaIMPL implements Sistema{
-
+	private ListaCuentas generalCuentas;
+	private ListaPersonajes generalPersonajes;
 	@Override
 	public boolean agregarCuenta(String nomCuenta, String contrasena, String nickName, String nivel, int RP,
 			String region, int cantPersonajes) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		Cuenta c = new Cuenta(nomCuenta,contrasena,nickName,nivel,RP,region,cantPersonajes);
+		boolean retorno = generalCuentas.ingresarCuenta(c);
+		return retorno;
 	}
 
 	@Override
 	public boolean agregarPersonaje(String nombre, String rol) {
-		// TODO Auto-generated method stub
-		return false;
+		Personaje p = new Personaje(nombre,rol);
+		boolean  retorno = generalPersonajes.agregarPersonaje(p);
+		return retorno;
 	}
 
 	@Override
