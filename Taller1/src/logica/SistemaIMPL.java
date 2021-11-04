@@ -3,6 +3,7 @@ package logica;
 public class SistemaIMPL implements Sistema{
 	private ListaCuentas generalCuentas;
 	private ListaPersonajes generalPersonajes;
+	private ListaSkins generalSkins;
 	@Override
 	public boolean agregarCuenta(String nomCuenta, String contrasena, String nickName, String nivel, int RP,
 			String region, int cantPersonajes) {
@@ -21,7 +22,8 @@ public class SistemaIMPL implements Sistema{
 
 	@Override
 	public boolean agregarSkin(String nombre, String tipo) {
-		// TODO Auto-generated method stub
+		Skin skin = new Skin(nombre,tipo);
+		boolean retorno = generalSkins.ingresarSkin(skin);
 		return false;
 	}
 
@@ -33,19 +35,27 @@ public class SistemaIMPL implements Sistema{
 
 	@Override
 	public void asociarCuentaPersonaje(String nomCuenta, String nomPersonaje) {
-		// TODO Auto-generated method stub
+		Cuenta c = generalCuentas.getCuentaNombre(nomCuenta);
+		Personaje p = generalPersonajes.buscarPersonajeNombre(nomPersonaje);
+		c.agregarPersonaje(p);
+		p.setCuenta(c);
 		
 	}
 
 	@Override
 	public void asociarPersonajeSkin(String nomPersonaje, String nomSkin) {
-		// TODO Auto-generated method stub
+		Personaje p = generalPersonajes.buscarPersonajeNombre(nomPersonaje);
+		Skin s = generalSkins.buscarSkinNombre(nomSkin);
+	
+		p.agregarSkin(s);
+		s.setPersonaje(p);
+		
 		
 	}
 
 	@Override
 	public void asociarRecaudacionPersonaje(String nomPersonaje) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
