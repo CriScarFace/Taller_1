@@ -15,6 +15,9 @@ public abstract class Taller1 {
 		Sistema sistema = new SistemaIMPL();
 		leerPersonajes(sistema);
 		leerCuentas(sistema);
+		
+		
+		//menu
 		int opcion1 = 0;
 		boolean error = false;
 		try{
@@ -33,11 +36,19 @@ public abstract class Taller1 {
 		            opcion1 = StdIn.readInt();
 		            StdOut.println("-------------------------------------");
 		            Cuenta c = null;
+		            
 		            String tipo = null;
 		            int encontrado = 0;
 		            String cerrarSistema = "Y";
 		            StdOut.print("Ingrese el nombre de su cuenta: ");
 		            String nCuenta = StdIn.readString();
+		            //modificacion brayan
+		            StdOut.print("Ingrese contrasena");
+		            String pass = StdIn.readString(); 
+		            //llamamos al contrato login
+		            boolean b = sistema.login(nCuenta,pass);
+		            
+		            
 		            while (encontrado == 0 && cerrarSistema.equalsIgnoreCase("y")){
 		            	
                         if(nCuenta.equals("ADMIN")){
@@ -47,6 +58,7 @@ public abstract class Taller1 {
                         }
                         //Distinta de admin
                         else{
+                        	//no se pueden usar objetos en el main 
                         	sistema.buscarCuenta(nCuenta);
                         	if (c == null) { //No registrado
                         		StdOut.println(" La cuenta ingresada no existe. ");
@@ -290,7 +302,7 @@ public abstract class Taller1 {
 		}
 
 	} //try
-//Menu
+//Menu fin
 	    
 
 	private static void leerPersonajes(Sistema s) throws IOException 
