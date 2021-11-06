@@ -1,4 +1,6 @@
-package logica;
+package dominio;
+
+import logica.ListaSkins;
 
 public class Personaje {
 

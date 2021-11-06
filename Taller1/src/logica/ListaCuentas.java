@@ -2,6 +2,8 @@ package logica;
 
 import java.util.Iterator;
 
+import dominio.Cuenta;
+
 public class ListaCuentas {
 
 	private int contador;
@@ -20,6 +22,7 @@ public class ListaCuentas {
 		if(contador < max) 
 		{
 			lista[contador] = c;
+			contador++;
 			return true;
 		}else {
 			return false;
@@ -39,6 +42,21 @@ public class ListaCuentas {
 			
 		}return false;
 	}
+	
+	public Cuenta buscarCuenta(String nomCuenta) {
+		int i = 0;
+		while(i<contador && !lista[i].getNomCuenta().equals(nomCuenta)) {
+			i++;
+		}
+		if(i == contador) {
+			return null;
+		}
+		else {
+			return lista[i];
+		}
+		
+	}
+	
 	public Cuenta getCuentaI(int i)
 	{
 		if(i<=contador) {

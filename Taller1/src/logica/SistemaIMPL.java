@@ -1,5 +1,9 @@
 package logica;
 
+import dominio.Cuenta;
+import dominio.Personaje;
+import dominio.Skin;
+
 public class SistemaIMPL implements Sistema{
 	private ListaCuentas generalCuentas;
 	private ListaPersonajes generalPersonajes;
@@ -170,6 +174,18 @@ public class SistemaIMPL implements Sistema{
 	@Override
 	public void login(String nomCuenta, String contrasena) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public boolean  buscarCuenta (String nomCuenta) {
+		Cuenta c = generalCuentas.getCuentaNombre(nomCuenta);
+		int e = 0;
+		if(c == null) { //No registrado
+			return false;
+		}
+		else { //Cuenta registrada
+			return true;
+		}
 		
 	}
 

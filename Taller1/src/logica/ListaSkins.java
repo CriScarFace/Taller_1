@@ -1,5 +1,7 @@
 package logica;
 
+import dominio.Skin;
+
 public class ListaSkins {
 
 	private int cant;

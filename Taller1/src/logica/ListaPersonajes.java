@@ -1,5 +1,7 @@
 package logica;
 
+import dominio.Personaje;
+
 public class ListaPersonajes {
 
 	private int cant;

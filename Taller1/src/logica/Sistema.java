@@ -29,6 +29,7 @@ public interface Sistema {
 	String escribirEstadisticas();
 	void login(String nomCuenta,String contrasena);
 	boolean registro(String nomCuenta,String contrasena,String nickName,String region);
+	boolean  buscarCuenta (String nomCuenta);
 	
 	
 

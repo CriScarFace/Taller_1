@@ -1,4 +1,6 @@
-package logica;
+package dominio;
+
+import logica.ListaPersonajes;
 
 public class Cuenta {
 	
