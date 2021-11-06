@@ -38,6 +38,13 @@ public abstract class Taller1 {
 		            String cerrarSistema = "Y";
 		            StdOut.print("Ingrese el nombre de su cuenta: ");
 		            String nCuenta = StdIn.readString();
+		            //modificacion brayan
+		            StdOut.print("Ingrese contrasena");
+		            String pass = StdIn.readString(); 
+		            //llamamos al contrato login
+		            boolean b = sistema.login(nCuenta,pass);
+		            
+		            
 		            while (encontrado == 0 && cerrarSistema.equalsIgnoreCase("y")){
 		            	
                         if(nCuenta.equals("ADMIN")){
