@@ -38,13 +38,6 @@ public abstract class Taller1 {
 		            String cerrarSistema = "Y";
 		            StdOut.print("Ingrese el nombre de su cuenta: ");
 		            String nCuenta = StdIn.readString();
-		            //modificacion brayan
-		            StdOut.print("Ingrese contrasena");
-		            String pass = StdIn.readString(); 
-		            //llamamos al contrato login
-		            boolean b = sistema.login(nCuenta,pass);
-		            
-		            
 		            while (encontrado == 0 && cerrarSistema.equalsIgnoreCase("y")){
 		            	
                         if(nCuenta.equals("ADMIN")){
@@ -334,7 +327,53 @@ public abstract class Taller1 {
 	private static void leerCuentas(Sistema s) throws IOException {
 		boolean ingreso = true;
 		//ingreso de cuentas.txt
-		ArchivoEntrada arch = new ArchivoEntrada("Cuentas.txt");
+		ArchivoEntrada arch = new ArchivoEntrada("cuentas.txt");
+		while(!arch.isEndFile()&&ingreso) 
+		{
+			Registro reg = arch.getRegistro();
+			String nomCuenta = reg.getString();
+			String pass = reg.getString();
+			String nickName = reg.getString();
+			int nivel = reg.getInt();
+			int RP = reg.getInt();
+			int totalPersonajes = reg.getInt();
+			boolean b0 = s.agregarCuenta(nomCuenta, pass, nickName, nivel, RP, totalPersonajes);
+			if(b0) 
+			{
+				System.out.println("se pudo agregar la cuenta");
+			}else {
+				System.out.println("no se pudo agregar la cuenta");
+			}
+			for (int i = 0; i < totalPersonajes; i++) {
+				//por cada personaje
+				String nomPersonaje = reg.getString();
+				boolean b = s.agregarPersonajePoseido(nomPersonaje,nomCuenta);
+				if(b) 
+				{
+					System.out.println("se pudo agregar el personaje poseido");
+				}else {
+					System.out.println("no se pudo agregar el personaje poseido");
+				}
+				
+				
+				int cantSkinsPersonajePoseido = reg.getInt();
+				for (int j = 0; j < cantSkinsPersonajePoseido; j++) {
+					String nomSkinPersonajePoseido = reg.getString();
+					boolean b2 = s.agregarSkinPoseida(nomCuenta,nomPersonaje,nomSkinPersonajePoseido);
+					if(b2) 
+					{
+						System.out.println("se pudo agregar la skin correctamente");
+					}else {
+						System.out.println("no se pudo agregar la skin");
+					}
+					
+				}
+				
+				
+			}
+			String region = reg.getString();
+			s.setRegion(nomCuenta,region);
+		}
 		
 		
 		

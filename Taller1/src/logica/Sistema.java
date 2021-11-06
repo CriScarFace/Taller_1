@@ -2,7 +2,7 @@ package logica;
 
 public interface Sistema {
 	
-	boolean agregarCuenta(String nomCuenta,String contrasena,String nickName,String nivel ,int RP ,String region,int cantPersonajes);
+	boolean agregarCuenta(String nomCuenta, String pass, String nickName, int nivel, int rP, int totalPersonajes);
 	boolean agregarPersonaje(String nombre,String rol);
 	boolean agregarSkin(String nombre,String tipo);
 	boolean agregarRecaudacion(String nomPersonaje,int montoRecaudacion);
@@ -30,6 +30,10 @@ public interface Sistema {
 	void login(String nomCuenta,String contrasena);
 	boolean registro(String nomCuenta,String contrasena,String nickName,String region);
 	boolean  buscarCuenta (String nomCuenta);
+	boolean agregarPersonajePoseido(String nomPersonaje, String nomCuenta);
+	boolean agregarSkinPoseida(String nomCuenta, String nomPersonaje, String nomSkinPersonajePoseido);
+	void setRegion(String nomCuenta, String region);
+	
 	
 	
 

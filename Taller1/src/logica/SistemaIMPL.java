@@ -9,12 +9,21 @@ public class SistemaIMPL implements Sistema{
 	private ListaPersonajes generalPersonajes;
 	private ListaSkins generalSkins;
 	@Override
-	public boolean agregarCuenta(String nomCuenta, String contrasena, String nickName, String nivel, int RP,
-			String region, int cantPersonajes) {
+	public boolean agregarCuenta(String nomCuenta, String contrasena, String nickName, int nivel, int RP, int cantPersonajes) {
+		Cuenta c = generalCuentas.getCuentaNombre(nomCuenta);
+		if(c==null) 
+		{
+			//la cuenta no existe
+			Cuenta cuenta = new Cuenta(nomCuenta,contrasena,nickName,nivel,RP,cantPersonajes);
+			boolean retorno = generalCuentas.ingresarCuenta(c);
+			return retorno;
+			
+		}else 
+		{
+			//la cuenta existe
+			throw new NullPointerException("la cuenta ya existe");
+		}
 		
-		Cuenta c = new Cuenta(nomCuenta,contrasena,nickName,nivel,RP,region,cantPersonajes);
-		boolean retorno = generalCuentas.ingresarCuenta(c);
-		return retorno;
 	}
 
 	@Override
@@ -193,6 +202,44 @@ public class SistemaIMPL implements Sistema{
 	public boolean registro(String nomCuenta, String contrasena, String nickName, String region) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public boolean agregarPersonajePoseido(String nomPersonaje, String nomCuenta) {
+		String rol = "";
+		Personaje p = generalPersonajes.buscarPersonajeNombre(nomPersonaje);
+		rol = generalPersonajes.buscarPersonajeNombre(nomPersonaje).getRol();
+		if(p != null) 
+		{
+			//el personaje existe en la lista general de personajes
+			//es un personaje valido
+			rol = generalPersonajes.buscarPersonajeNombre(nomPersonaje).getRol();
+			Personaje personajePoseido = new Personaje(nomPersonaje,rol);
+			return generalCuentas.getCuentaNombre(nomCuenta).agregarPersonaje(personajePoseido);//agregamos el personaje poseido a la lista de personajes de la cuenta
+			
+		}else 
+		{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean agregarSkinPoseida(String nomCuenta, String nomPersonaje, String nomSkinPersonajePoseido) {
+		Skin s = generalSkins.buscarSkinNombre(nomSkinPersonajePoseido);
+		if(s !=null) 
+		{
+			//la skin existe en el sistema
+			String tipo = s.getTipo();
+			Skin skinPoseida = new Skin(nomSkinPersonajePoseido,tipo);
+			return generalCuentas.getCuentaNombre(nomCuenta).getListaPersonajes().buscarPersonajeNombre(nomPersonaje).agregarSkin(skinPoseida);
+		}
+		return false;
+	}
+
+	@Override
+	public void setRegion(String nomCuenta, String region) {
+		generalCuentas.getCuentaNombre(nomCuenta).setRegion(region);
+		
 	}
 
 }
