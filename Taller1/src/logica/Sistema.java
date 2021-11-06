@@ -27,7 +27,7 @@ public interface Sistema {
 	String escribirPersonajes();
 	String escribirCuentas();
 	String escribirEstadisticas();
-	boolean login(String nomCuenta,String contrasena);
+	void login(String nomCuenta,String contrasena);
 	boolean registro(String nomCuenta,String contrasena,String nickName,String region);
 	boolean  buscarCuenta (String nomCuenta);
 	

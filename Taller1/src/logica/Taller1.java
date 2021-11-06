@@ -15,9 +15,6 @@ public abstract class Taller1 {
 		Sistema sistema = new SistemaIMPL();
 		leerPersonajes(sistema);
 		leerCuentas(sistema);
-		
-		
-		//menu
 		int opcion1 = 0;
 		boolean error = false;
 		try{
@@ -36,7 +33,6 @@ public abstract class Taller1 {
 		            opcion1 = StdIn.readInt();
 		            StdOut.println("-------------------------------------");
 		            Cuenta c = null;
-		            
 		            String tipo = null;
 		            int encontrado = 0;
 		            String cerrarSistema = "Y";
@@ -51,7 +47,6 @@ public abstract class Taller1 {
                         }
                         //Distinta de admin
                         else{
-                        	//no se pueden usar objetos en el main 
                         	sistema.buscarCuenta(nCuenta);
                         	if (c == null) { //No registrado
                         		StdOut.println(" La cuenta ingresada no existe. ");
@@ -295,7 +290,7 @@ public abstract class Taller1 {
 		}
 
 	} //try
-//Menu fin
+//Menu
 	    
 
 	private static void leerPersonajes(Sistema s) throws IOException 

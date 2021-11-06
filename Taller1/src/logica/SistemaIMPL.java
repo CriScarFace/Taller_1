@@ -172,9 +172,8 @@ public class SistemaIMPL implements Sistema{
 	}
 
 	@Override
-	public boolean login(String nomCuenta, String contrasena) {
-		Cuenta c = generalCuentas.buscarCuenta(nomCuenta);
-		
+	public void login(String nomCuenta, String contrasena) {
+		// TODO Auto-generated method stub
 		
 	}
 	
