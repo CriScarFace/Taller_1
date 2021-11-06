@@ -8,6 +8,13 @@ public class SistemaIMPL implements Sistema{
 	private ListaCuentas generalCuentas;
 	private ListaPersonajes generalPersonajes;
 	private ListaSkins generalSkins;
+	
+	public SistemaIMPL() 
+	{
+		generalCuentas = new ListaCuentas(999);
+		generalPersonajes = new ListaPersonajes(999);
+		generalSkins = new ListaSkins(999);
+	}
 	@Override
 	public boolean agregarCuenta(String nomCuenta, String contrasena, String nickName, int nivel, int RP, int cantPersonajes) {
 		Cuenta c = generalCuentas.getCuentaNombre(nomCuenta);
@@ -15,35 +22,53 @@ public class SistemaIMPL implements Sistema{
 		{
 			//la cuenta no existe
 			Cuenta cuenta = new Cuenta(nomCuenta,contrasena,nickName,nivel,RP,cantPersonajes);
-			boolean retorno = generalCuentas.ingresarCuenta(c);
+			boolean retorno = generalCuentas.ingresarCuenta(cuenta);
 			return retorno;
 			
 		}else 
 		{
 			//la cuenta existe
-			throw new NullPointerException("la cuenta ya existe");
+			//throw new NullPointerException("la cuenta ya existe");
+			System.out.println("la cuenta ya esta ingresada ");
+			return false;
 		}
 		
 	}
 
 	@Override
 	public boolean agregarPersonaje(String nombre, String rol) {
-		Personaje p = new Personaje(nombre,rol);
-		boolean  retorno = generalPersonajes.agregarPersonaje(p);
-		return retorno;
+		Personaje personaje = generalPersonajes.buscarPersonajeNombre(nombre);
+		if(personaje == null) 
+		{
+			Personaje p = new Personaje(nombre,rol);
+			boolean  retorno = generalPersonajes.agregarPersonaje(p);
+			return retorno;
+			
+		}else {
+			//el personaje ya existe
+			throw new NullPointerException("el personaje ya existe");
+		}	
 	}
 
 	@Override
 	public boolean agregarSkin(String nombre, String tipo) {
-		Skin skin = new Skin(nombre,tipo);
-		boolean retorno = generalSkins.ingresarSkin(skin);
-		return false;
+		Skin s = generalSkins.buscarSkinNombre(nombre);
+		if(s==null) {
+			Skin skin = new Skin(nombre,tipo);
+			boolean retorno = generalSkins.ingresarSkin(skin);
+			return retorno;
+		}else {
+			//la skin ya existe
+			throw new NullPointerException("la skin ya existe");
+		}
 	}
 
 	@Override
-	public boolean agregarRecaudacion(String nomPersonaje, int montoRecaudacion) {
-		// TODO Auto-generated method stub
-		return false;
+	public void agregarRecaudacion(String nomPersonaje, int montoRecaudacion) {
+		Personaje p = generalPersonajes.buscarPersonajeNombre(nomPersonaje);
+		p.setRecaudacionCLP(montoRecaudacion);
+		
+		
 	}
 
 	@Override
@@ -73,15 +98,55 @@ public class SistemaIMPL implements Sistema{
 	}
 
 	@Override
-	public boolean comprarSkin(String nomPersonaje, String nomSkin) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean comprarSkin(String nomCuenta,String nomPersonaje, String nomSkin) {
+		//verificar que exista el personaje y la skin que se desea comprar
+		Personaje p = generalPersonajes.buscarPersonajeNombre(nomPersonaje);
+		Cuenta c = generalCuentas.buscarCuenta(nomCuenta);
+		Skin s = generalSkins.buscarSkinNombre(nomSkin);
+		if(p != null && c!= null && s!= null) 
+		{	
+			if(p.getListaSkins().buscarSkinNombre(nomSkin)!= null) {
+				//el personaje y la skin que se desean comprar existen
+				//debe tener RP suficientes
+				if(s.getPrecio()<=c.getRP()) {
+					//tiene suficiente rp
+					//subir nivel a la cuenta
+					c.setNivel(c.getNivel()+1);
+					//restar los RP de la compra a los RP de la cuenta
+					c.setRP(c.getRP()-s.getPrecio());
+					boolean b  = c.getListaPersonajes().buscarPersonajeNombre(nomPersonaje).agregarSkin(s);//agrego la skin al personaje
+					return b;
+					
+				}
+				else 
+				{
+					throw new NullPointerException("la cuenta no tiene saldo suficiente");
+					//return false;
+				}
+			}else {
+				throw new NullPointerException("la skin a comprar no pertenece al personaje suministrado");
+			}	
+		}else {
+			throw new NullPointerException("el personaje o la skin no existen");
+		}
+		
 	}
 
 	@Override
 	public boolean comprarPersonaje(String nomPersonaje, String nomCuenta) {
-		// TODO Auto-generated method stub
-		return false;
+		//verificar que exista cuenta y que exista el personaje
+		Cuenta c = generalCuentas.buscarCuenta(nomCuenta);
+		Personaje p = generalPersonajes.buscarPersonajeNombre(nomPersonaje);
+		if(c!=null && p!=null) 
+		{
+			//la cuenta y el personaje existen en el sistema
+			return c.agregarPersonaje(p);
+			
+		}else {
+			throw new NullPointerException("el personaje o la cuenta no existen en el sistema");
+		}
+		
+		
 	}
 
 	@Override

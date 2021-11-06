@@ -19,6 +19,7 @@ public class ListaPersonajes {
 		if(cant<max) 
 		{
 			lista[cant] = p;
+			cant++;
 			return true;
 		}else 
 		{

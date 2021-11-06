@@ -5,11 +5,11 @@ public interface Sistema {
 	boolean agregarCuenta(String nomCuenta, String pass, String nickName, int nivel, int rP, int totalPersonajes);
 	boolean agregarPersonaje(String nombre,String rol);
 	boolean agregarSkin(String nombre,String tipo);
-	boolean agregarRecaudacion(String nomPersonaje,int montoRecaudacion);
+	void agregarRecaudacion(String nomPersonaje,int montoRecaudacion);
 	void asociarCuentaPersonaje(String nomCuenta,String nomPersonaje);
 	void asociarPersonajeSkin(String nomPersonaje,String nomSkin);
 	void asociarRecaudacionPersonaje(String nomPersonaje);
-	boolean comprarSkin(String nomPersonaje,String nomSkin);
+	boolean comprarSkin(String nomCuenta,String nomPersonaje,String nomSkin);
 	boolean comprarPersonaje(String nomPersonaje,String nomCuenta);
 	String obtenerSkinDisponibles(String nomCuenta);
 	String obtenerInventarioCuenta(String nomCuenta);

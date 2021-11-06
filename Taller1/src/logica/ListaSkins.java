@@ -20,6 +20,7 @@ public class ListaSkins {
 		if(cant > max) 
 		{
 			lista[cant] = skin;
+			cant++;
 			return true;
 		}else {
 			return false;
