@@ -15,9 +15,10 @@ public class ListaSkins {
 	
 	public boolean ingresarSkin(Skin skin) 
 	{
-		if(cant > max) 
+		if(cant < max) 
 		{
 			lista[cant] = skin;
+			cant++;
 			return true;
 		}else {
 			return false;

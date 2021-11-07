@@ -4,6 +4,14 @@ public class SistemaIMPL implements Sistema{
 	private ListaCuentas generalCuentas;
 	private ListaPersonajes generalPersonajes;
 	private ListaSkins generalSkins;
+	
+	
+	public SistemaIMPL() 
+	{
+		generalCuentas = new ListaCuentas(999);
+		generalPersonajes = new ListaPersonajes(999);
+		generalSkins = new ListaSkins(999);
+	}
 	@Override
 	public boolean agregarCuenta(String nomCuenta, String contrasena, String nickName, int nivel, int RP, int cantPersonajes) {
 		Cuenta c = generalCuentas.getCuentaNombre(nomCuenta);
@@ -11,7 +19,7 @@ public class SistemaIMPL implements Sistema{
 		{
 			//la cuenta no existe
 			Cuenta cuenta = new Cuenta(nomCuenta,contrasena,nickName,nivel,RP,cantPersonajes);
-			boolean retorno = generalCuentas.ingresarCuenta(c);
+			boolean retorno = generalCuentas.ingresarCuenta(cuenta);
 			return retorno;
 			
 		}else 
@@ -33,7 +41,7 @@ public class SistemaIMPL implements Sistema{
 	public boolean agregarSkin(String nombre, String tipo) {
 		Skin skin = new Skin(nombre,tipo);
 		boolean retorno = generalSkins.ingresarSkin(skin);
-		return false;
+		return retorno;
 	}
 
 	@Override
@@ -54,11 +62,14 @@ public class SistemaIMPL implements Sistema{
 	@Override
 	public void asociarPersonajeSkin(String nomPersonaje, String nomSkin) {
 		Personaje p = generalPersonajes.buscarPersonajeNombre(nomPersonaje);
+		
 		Skin s = generalSkins.buscarSkinNombre(nomSkin);
 	
+	
 		p.agregarSkin(s);
+	
 		s.setPersonaje(p);
-		
+
 		
 	}
 
@@ -192,14 +203,17 @@ public class SistemaIMPL implements Sistema{
 	public boolean agregarPersonajePoseido(String nomPersonaje,String nomCuenta) {
 		String rol = "";
 		Personaje p = generalPersonajes.buscarPersonajeNombre(nomPersonaje);
-		rol = generalPersonajes.buscarPersonajeNombre(nomPersonaje).getRol();
 		if(p != null) 
 		{
 			//el personaje existe en la lista general de personajes
 			//es un personaje valido
 			rol = generalPersonajes.buscarPersonajeNombre(nomPersonaje).getRol();
 			Personaje personajePoseido = new Personaje(nomPersonaje,rol);
-			return generalCuentas.getCuentaNombre(nomCuenta).agregarPersonaje(personajePoseido);//agregamos el personaje poseido a la lista de personajes de la cuenta
+			Cuenta cuenta = generalCuentas.getCuentaNombre(nomCuenta);
+			
+			boolean b = cuenta.agregarPersonaje(personajePoseido);
+			
+			return b;//agregamos el personaje poseido a la lista de personajes de la cuenta
 			
 		}else 
 		{

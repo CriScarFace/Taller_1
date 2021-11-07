@@ -17,34 +17,40 @@ public abstract class Taller1 {
 	private static void inicioSesion(Sistema s) {
 		
 		
+		
 	}
 
 	private static void leerPersonajes(Sistema s) throws IOException 
 	{
 		boolean ingreso = true;
 		boolean ingreso2 = true;
-		ArchivoEntrada arch = new ArchivoEntrada("personajes.txt");
+		
+		ArchivoEntrada arch = new ArchivoEntrada("Personajes.txt");
 		while(!arch.isEndFile() && ingreso) {
 			Registro reg = arch.getRegistro();
 			String nomPersonaje = reg.getString();
 			String rol = reg.getString();
+			
 			ingreso = s.agregarPersonaje(nomPersonaje, rol);
+			
 			int cantSkins = reg.getInt();
 			for (int i = 0; i < cantSkins; i++) {
 				String nomSkin = reg.getString();
 				String calidad = reg.getString();
+				
 				ingreso2 = s.agregarSkin(nomSkin, calidad);
+		
 				s.asociarPersonajeSkin(nomPersonaje, nomSkin);
 				
 				
-			if(!ingreso) 
-			{
-				System.out.println("no se pudo ingresar el personaje no hay espacio");
-			}	
-			if(!ingreso2) 
-			{
-				System.out.println("no se pudo ingresar la skin no hay espacio");
-			}
+				if(!ingreso) 
+				{
+					System.out.println("no se pudo ingresar el personaje no hay espacio");
+				}	
+				if(!ingreso2) 
+				{
+					System.out.println("no se pudo ingresar la skin no hay espacio");
+				}
 				
 			}
 			
@@ -56,7 +62,7 @@ public abstract class Taller1 {
 	private static void leerCuentas(Sistema s) throws IOException {
 		boolean ingreso = true;
 		//ingreso de cuentas.txt
-		ArchivoEntrada arch = new ArchivoEntrada("cuentas.txt");
+		ArchivoEntrada arch = new ArchivoEntrada("Cuentas.txt");
 		while(!arch.isEndFile()&&ingreso) 
 		{
 			Registro reg = arch.getRegistro();
@@ -67,10 +73,12 @@ public abstract class Taller1 {
 			int RP = reg.getInt();
 			int totalPersonajes = reg.getInt();
 			s.agregarCuenta(nomCuenta, pass, nickName, nivel, RP, totalPersonajes);
+			
 			for (int i = 0; i < totalPersonajes; i++) {
 				//por cada personaje
 				String nomPersonaje = reg.getString();
 				boolean b = s.agregarPersonajePoseido(nomPersonaje,nomCuenta);
+				
 				if(b) 
 				{
 					System.out.println("se pudo agregar el personaje poseido");
