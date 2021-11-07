@@ -25,8 +25,8 @@ public class SistemaIMPL implements Sistema{
 			boolean retorno = generalCuentas.ingresarCuenta(cuenta);
 			return retorno;
 			
-		}else 
-		{
+		}else{ 
+		
 			//la cuenta existe
 			//throw new NullPointerException("la cuenta ya existe");
 			System.out.println("la cuenta ya esta ingresada ");
@@ -37,7 +37,10 @@ public class SistemaIMPL implements Sistema{
 
 	@Override
 	public boolean agregarPersonaje(String nombre, String rol) {
-		Personaje personaje = generalPersonajes.buscarPersonajeNombre(nombre);
+		//Personaje personaje = generalPersonajes.buscarPersonajeNombre(nombre);
+		Personaje p = new Personaje(nombre,rol);
+		return generalPersonajes.agregarPersonaje(p);
+		/**
 		if(personaje == null) 
 		{
 			Personaje p = new Personaje(nombre,rol);
@@ -48,6 +51,7 @@ public class SistemaIMPL implements Sistema{
 			//el personaje ya existe
 			throw new NullPointerException("el personaje ya existe");
 		}	
+		**/
 	}
 
 	@Override
@@ -59,7 +63,7 @@ public class SistemaIMPL implements Sistema{
 			return retorno;
 		}else {
 			//la skin ya existe
-			throw new NullPointerException("la skin ya existe");
+			return false;//throw new NullPointerException("la skin ya existe");
 		}
 	}
 
@@ -120,14 +124,14 @@ public class SistemaIMPL implements Sistema{
 				}
 				else 
 				{
-					throw new NullPointerException("la cuenta no tiene saldo suficiente");
+					return false;//throw new NullPointerException("la cuenta no tiene saldo suficiente");
 					//return false;
 				}
 			}else {
-				throw new NullPointerException("la skin a comprar no pertenece al personaje suministrado");
+				return false;//throw new NullPointerException("la skin a comprar no pertenece al personaje suministrado");
 			}	
 		}else {
-			throw new NullPointerException("el personaje o la skin no existen");
+			return false;//throw new NullPointerException("el personaje o la skin no existen");
 		}
 		
 	}
@@ -143,7 +147,7 @@ public class SistemaIMPL implements Sistema{
 			return c.agregarPersonaje(p);
 			
 		}else {
-			throw new NullPointerException("el personaje o la cuenta no existen en el sistema");
+			return false;//throw new NullPointerException("el personaje o la cuenta no existen en el sistema");
 		}
 		
 		

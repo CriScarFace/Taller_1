@@ -3,11 +3,13 @@ import java.io.IOException;
 import java.util.Iterator;
 
 import dominio.Cuenta;
+
 import ucn.*;
 
-public abstract class Taller1 {
+public class Taller1 {
 
 	public static void main(String[] args) throws IOException {
+		
 		Menu();
 	}
 	
@@ -47,8 +49,8 @@ public abstract class Taller1 {
                         }
                         //Distinta de admin
                         else{
-                        	sistema.buscarCuenta(nCuenta);
-                        	if (c == null) { //No registrado
+                        	boolean acceso = sistema.buscarCuenta(nCuenta);
+                        	if (!acceso) { //No registrado
                         		StdOut.println(" La cuenta ingresada no existe. ");
                         		StdOut.println("¿Desea registrarse? <si - no> : ");
                         		String opcion2 = StdIn.readString();
@@ -297,7 +299,8 @@ public abstract class Taller1 {
 	{
 		boolean ingreso = true;
 		boolean ingreso2 = true;
-		ArchivoEntrada arch = new ArchivoEntrada("personajes.txt");
+		ArchivoEntrada arch = new ArchivoEntrada("Personajes.txt");
+		System.out.println("estamos por entrar al while");
 		while(!arch.isEndFile() && ingreso) {
 			Registro reg = arch.getRegistro();
 			String nomPersonaje = reg.getString();
@@ -308,14 +311,15 @@ public abstract class Taller1 {
 				String nomSkin = reg.getString();
 				String calidad = reg.getString();
 				ingreso2 = s.agregarSkin(nomSkin, calidad);
-			if(!ingreso) 
-			{
-				System.out.println("no se pudo ingresar el personaje");
-			}	
-			if(!ingreso2) 
-			{
-				System.out.println("no se pudo ingresar la skin");
-			}
+				s.asociarPersonajeSkin(nomPersonaje, nomSkin);
+				if(!ingreso) 
+				{
+					System.out.println("no se pudo ingresar el personaje");
+				}	
+				if(!ingreso2) 
+				{
+					System.out.println("no se pudo ingresar la skin");
+				}
 				
 			}
 			
@@ -327,7 +331,7 @@ public abstract class Taller1 {
 	private static void leerCuentas(Sistema s) throws IOException {
 		boolean ingreso = true;
 		//ingreso de cuentas.txt
-		ArchivoEntrada arch = new ArchivoEntrada("cuentas.txt");
+		ArchivoEntrada arch = new ArchivoEntrada("Cuentas.txt");
 		while(!arch.isEndFile()&&ingreso) 
 		{
 			Registro reg = arch.getRegistro();

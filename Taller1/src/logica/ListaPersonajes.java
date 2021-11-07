@@ -21,8 +21,8 @@ public class ListaPersonajes {
 			lista[cant] = p;
 			cant++;
 			return true;
-		}else 
-		{
+		}else{
+		
 			return false;
 		}
 		
