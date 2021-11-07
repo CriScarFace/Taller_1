@@ -20,6 +20,7 @@ public class ListaCuentas {
 		if(contador < max) 
 		{
 			lista[contador] = c;
+			contador++;
 			return true;
 		}else {
 			return false;
