@@ -3,7 +3,8 @@ import java.io.IOException;
 import java.util.Iterator;
 
 import ucn.*;
-public abstract class Taller1 {
+
+public  class Taller1 {
 
 	public static void main(String[] args) throws IOException {
 		Sistema s = new SistemaIMPL();
@@ -14,6 +15,30 @@ public abstract class Taller1 {
 	}
 
 	private static void Menu(Sistema s) {
+		boolean error =false;
+		try{
+			int opcion1 = 0;
+			while (opcion1 != 3){
+				StdOut.print("Ingrese el nombre de su cuenta: ");
+	            int  nCuenta = StdIn.readInt();
+				
+					
+				}
+			
+			
+			
+			
+			
+			
+		}
+		catch (Exception e){
+			error = true;
+		    System.out.println("Error!. Ha ocurrido la siguiente excepción: " + ""+e+"");
+		}
+		finally{
+			System.out.println("El programa se cerrará. ");
+		}
+		
 		
 		
 
@@ -80,9 +105,9 @@ public abstract class Taller1 {
 				
 				if(b) 
 				{
-					System.out.println("se pudo agregar el personaje poseido");
+					//System.out.println("se pudo agregar el personaje poseido");
 				}else {
-					System.out.println("no se pudo agregar el personaje poseido");
+					//System.out.println("no se pudo agregar el personaje poseido");
 				}
 				
 				
@@ -92,9 +117,9 @@ public abstract class Taller1 {
 					boolean b2 = s.agregarSkinPoseida(nomCuenta,nomPersonaje,nomSkinPersonajePoseido);
 					if(b2) 
 					{
-						System.out.println("se pudo agregar la skin correctamente");
+						//System.out.println("se pudo agregar la skin correctamente");
 					}else {
-						System.out.println("no se pudo agregar la skin");
+						//System.out.println("no se pudo agregar la skin");
 					}
 					
 				}
