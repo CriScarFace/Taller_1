@@ -7,20 +7,21 @@ public class Cuenta {
 		private String nomCuenta;
 		private String contrasena;
 		private String nickName;
-		private int nivel;
+		private String nivel;
 		private int RP;
 		private String region;
 		private int cantPersonajes;
 		private ListaPersonajes listaPersonajes;
 		
 
-		public Cuenta(String nomCuenta,String contrasena,String nickName,int nivel,int RP,int cantPersonajes) 
+		public Cuenta(String nomCuenta,String contrasena,String nickName,String nivel,int RP,String region,int cantPersonajes) 
 		{
 			this.nomCuenta = nomCuenta;
 			this.contrasena = contrasena;
 			this.nickName = nickName;
 			this.nivel = nivel;
 			this.RP = RP;
+			this.region = region;
 			this.cantPersonajes = cantPersonajes;
 			listaPersonajes = new ListaPersonajes(155); 
 		}
@@ -61,12 +62,12 @@ public class Cuenta {
 		}
 
 
-		public int getNivel() {
+		public String getNivel() {
 			return nivel;
 		}
 
 
-		public void setNivel(int nivel) {
+		public void setNivel(String nivel) {
 			this.nivel = nivel;
 		}
 
