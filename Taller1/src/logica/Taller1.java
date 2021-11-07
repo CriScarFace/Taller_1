@@ -9,15 +9,14 @@ public abstract class Taller1 {
 		Sistema s = new SistemaIMPL();
 		leerPersonajes(s);
 		leerCuentas(s);
-		inicioSesion(s);
+		Menu(s);
 		
-
 	}
 
-	private static void inicioSesion(Sistema s) {
+	private static void Menu(Sistema s) {
 		
 		
-		
+
 	}
 
 	private static void leerPersonajes(Sistema s) throws IOException 
