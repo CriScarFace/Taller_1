@@ -6,7 +6,6 @@ public abstract class Taller1 {
 		System.out.print("HOLA MUNDO1");
 		System.out.println("hola mundo 2");
 
-
 	}
 
 }
